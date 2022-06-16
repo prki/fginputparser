@@ -1,4 +1,7 @@
+#ifndef _VIEW_HPP_
+#define _VIEW_HPP_
 #include <iostream>
+#include <list>
 #include <stdexcept>
 #include <SFML/Graphics.hpp>
 
@@ -20,9 +23,12 @@ public:
     }
     sf::RenderWindow &getWindow() { return this->window; }
     void drawMainElements();
+    void drawInputHistory(const std::list<sf::Text> &drawableHistory);
 
 private:
     sf::Font defaultFont;
     sf::Text headerText;
     sf::RenderWindow window;
 };
+
+#endif // _VIEW_HPP_

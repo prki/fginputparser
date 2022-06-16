@@ -1,11 +1,17 @@
+#include <iostream> // [DBG]
 #include <SFML/Graphics.hpp>
 #include "view.hpp"
+#include "inputhandler.hpp"
+#include "inputhistory.hpp"
 
 int main()
 {
     MainView mainview;
-    //sf::RenderWindow window(sf::VideoMode(800, 600), "FG Input parser");
+    InputHandler inputHandler;
+    InputHistory inputHistory;
+    // sf::RenderWindow window(sf::VideoMode(800, 600), "FG Input parser");
 
+    mainview.getWindow().setFramerateLimit(60);
     while (mainview.getWindow().isOpen())
     {
         sf::Event event;
@@ -17,23 +23,12 @@ int main()
 
         mainview.getWindow().clear();
         mainview.drawMainElements();
+        // mainview.getWindow().display();
+        inputHandler.readCurrentInput();
+        inputHistory.updateNewInput(inputHandler.getCurrentInput());
+        mainview.drawInputHistory(inputHistory.getDrawableHistory());
         mainview.getWindow().display();
     }
-
-    /*
-    while (window.isOpen())
-    {
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window.close();
-        }
-
-        window.clear();
-        window.display();
-    }
-    */
 
     return 0;
 }

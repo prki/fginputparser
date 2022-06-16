@@ -18,8 +18,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED true)
 add_executable(
 	FGInput_displayer
 	src/main.cpp
-	src/sample.cpp
 	src/view.cpp
+	src/inputhandler.cpp
+	src/inputhistory.cpp
 )
 
 target_link_libraries(

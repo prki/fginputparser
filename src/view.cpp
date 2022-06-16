@@ -1,19 +1,18 @@
 #include <iostream>
+#include <list>
 #include <SFML/Graphics.hpp>
 #include "view.hpp"
-/*
-MainView::MainView()
-{
-    //this->window = window(sf::VideoMode(800, 600), "FG Input parser");
-    int ret = this->defaultFont.loadFromFile("./assets/Montserrat-Regular.ttf");
-    if (!ret)
-    {
-        std::cout << "Error loading font: " << ret << std::endl;
-    }
-}
-*/
 
 void MainView::drawMainElements()
 {
     this->window.draw(this->headerText);
+}
+
+void MainView::drawInputHistory(const std::list<sf::Text> &drawableHistory)
+{
+    float positionMover = 20;
+    for (auto it = drawableHistory.rbegin(); it != drawableHistory.rend(); it++)
+    {
+        this->window.draw(*it);
+    }
 }
